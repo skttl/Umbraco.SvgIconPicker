@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A picker, for picking icons from an svg-file containing symbols.",
   "license": "GPLv3",
-  "url": "https://github.com/skttl/Umbraco.SvgIconPicker"
+  "url": "https://github.com/skttl/Umbraco.SvgIconPicker",
   "author": {
     "name": "Søren Kottal",
     "email": "hej@skttl.dk",
