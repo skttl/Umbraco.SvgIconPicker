@@ -31,7 +31,7 @@ Build the package through Grunt.
 grunt package
 ```
 
-Then upload the created zip file in /pkg/umbraco in the local package installer in Umbraco.
+Then upload the created zip file in /pkg/umbraco in the local package installer in Umbraco. Or install it through the package repository.
 
 ## How to use
 Pick SvgIconPicker as the editor for your desired icon property.
