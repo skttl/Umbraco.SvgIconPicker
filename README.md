@@ -43,7 +43,7 @@ Type the path to your SVG spritesheet in the configuration.
 On the document where you put the editor, it works just like the built in media picker mixed with the icon picker.
 You can filter icons, by searching the icons id. Select an icon by clicking it.
 
-![](https://raw.github.com/skttl/Umbraco.SvgIconPicker/master/readme_assets/editor.png)
+![](https://raw.github.com/skttl/Umbraco.SvgIconPicker/master/readme_assets/editor-full.png)
 
 The selected icons id is saved as a string in the property value.
 
