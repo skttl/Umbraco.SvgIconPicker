@@ -1,0 +1,29 @@
+{
+  "propertyEditors": [
+    {
+      "name": "SvgIconPicker",
+      "alias": "SvgIconPicker",
+      "editor": {
+        "valueType": "STRING",
+        "view": "~/App_Plugins/SvgIconPicker/views/svg.icon.picker.html"
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "description": "Type the path to the svg file",
+            "key": "svgPath",
+            "label": "SVG Path",
+            "view": "textstring"
+          }
+        ]
+      }
+    }
+  ],
+  "css": [
+    "~/App_Plugins/SvgIconPicker/css/svg.icon.picker.css"
+  ],
+  "javascript": [
+    "~/App_Plugins/SvgIconPicker/js/svg.icon.picker.js"
+  ]
+}
+
