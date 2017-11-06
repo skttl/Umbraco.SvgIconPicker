@@ -1,5 +1,4 @@
 angular.module('umbraco').controller('SvgIconPickerController', function($scope, dialogService) {
-  console.log('Hellos from SvgIconPickerController');
 
   if ($scope.model.value === undefined || $scope.model.value === null) {
   	$scope.model.value = "";
@@ -12,7 +11,6 @@ angular.module('umbraco').controller('SvgIconPickerController', function($scope,
   };
 
   $scope.openIconPickerDialog = function() {
-  	console.log("clicked");
   	dialogService.open({
   		template: "/App_Plugins/SvgIconPicker/views/svg.icon.picker.dialog.html",
   		dialogData: {
