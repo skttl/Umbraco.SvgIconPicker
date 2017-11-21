@@ -1,5 +1,7 @@
 angular.module('umbraco').controller('SvgIconPickerDialogController', function ($scope, $http, localizationService) {
 	
+	$scope.model.hideSubmitButton = true;
+	
 	if (!$scope.model.title) {
 		$scope.model.title = localizationService.localize("defaultdialogs_selectIcon");
 	}
