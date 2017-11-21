@@ -10,7 +10,7 @@
 			</i>
 
 			<div class="umb-sortable-thumbnails__actions">
-				<a class="umb-sortable-thumbnails__action" href="" ng-click="openIconPickerDialog()">
+				<a class="umb-sortable-thumbnails__action" href="" ng-click="openSvgIconPicker()">
 					<i class="icon icon-edit"></i>
 				</a>
 				<a class="umb-sortable-thumbnails__action -red" href="" ng-click="model.value = ''">
@@ -21,14 +21,15 @@
 		</li>
 	</ul>
 
-
-	<ul class="umb-sortable-thumbnails" ng-if="model.value === ''">
-		<li style="border: none">
-			<a href="#" class="add-link" ng-click="openIconPickerDialog()" prevent-default>
-				<i class="icon icon-add large"></i>
-			</a>
-		</li>
-	</ul>
+	<a href="#" class="add-link" ng-class="{'add-link-square': model.value === ''}" ng-if="model.value === ''" ng-click="openSvgIconPicker()" prevent-default>
+		<i class="icon icon-add large"></i>
+	</a>
 	
-</div>
+    <umb-overlay
+        ng-if="svgIconPickerOverlay.show"
+        model="svgIconPickerOverlay"
+        view="svgIconPickerOverlay.view"
+        position="right">
+    </umb-overlay>
 
+</div>

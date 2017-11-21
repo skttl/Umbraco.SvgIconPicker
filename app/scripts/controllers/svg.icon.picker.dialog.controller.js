@@ -1,11 +1,14 @@
-angular.module('umbraco').controller('SvgIconPickerDialogController', function($scope, $http) {
+angular.module('umbraco').controller('SvgIconPickerDialogController', function ($scope, $http, localizationService) {
+	
+	if (!$scope.model.title) {
+		$scope.model.title = localizationService.localize("defaultdialogs_selectIcon");
+	}
 
-	var svgLink = $scope.dialogData.svgLink;
+	var svgLink = $scope.model.svgLink;
 
 	$scope.getSvgLink = function(symbol) {
 		return svgLink + "#" + symbol;
 	};
-
 
 	$http.get(svgLink).then(function(response) {
 
@@ -22,8 +25,8 @@ angular.module('umbraco').controller('SvgIconPickerDialogController', function($
 
 	});
 
-    $scope.submitClass = function (icon) {
-		$scope.submit(icon);
+	$scope.selectIcon = function (icon) {
+		$scope.model.icon = icon;
+		$scope.submitForm($scope.model);
 	};
 });
-

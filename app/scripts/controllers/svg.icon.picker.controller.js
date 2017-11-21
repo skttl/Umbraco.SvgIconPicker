@@ -1,31 +1,35 @@
-angular.module('umbraco').controller('SvgIconPickerController', function($scope, dialogService) {
-  console.log('Hellos from SvgIconPickerController');
+angular.module('umbraco').controller('SvgIconPickerController', function($scope) {
+	
+	if ($scope.model.value === undefined || $scope.model.value === null) {
+		$scope.model.value = "";
+	}
 
-  if ($scope.model.value === undefined || $scope.model.value === null) {
-  	$scope.model.value = "";
-  }
+	var svgLink = $scope.model.config.svgPath + "?r=" + (new Date()).getTime();
 
-  var svgLink = $scope.model.config.svgPath + "?r=" + (new Date()).getTime();
+	$scope.getSvgLink = function(symbol) {
+		return svgLink + "#" + symbol;
+	};
 
-  $scope.getSvgLink = function(symbol) {
-  	return svgLink + "#" + symbol;
-  };
+	$scope.openSvgIconPicker = function () {
+		$scope.svgIconPickerOverlay = {
+			view: "/App_Plugins/SvgIconPicker/views/svg.icon.picker.dialog.html",
+			show: true,
+			svgLink: svgLink,
+			selected: $scope.model.value,
+			submit: function (model) {
+				
+				if (model.icon) {
+					$scope.model.value = model.icon;
+				}
 
-  $scope.openIconPickerDialog = function() {
-  	console.log("clicked");
-  	dialogService.open({
-  		template: "/App_Plugins/SvgIconPicker/views/svg.icon.picker.dialog.html",
-  		dialogData: {
-  			"svgLink": svgLink,
-  			"selected": $scope.model.value
-  		},
-  		callback: function (value) {
-  			if (value !== null && value !== "") {
-  				$scope.model.value = value;
-  			}
-  		}
-  	});
-  };
-
+				$scope.svgIconPickerOverlay.show = false;
+				$scope.svgIconPickerOverlay = null;
+			},
+			close: function () {
+				$scope.svgIconPickerOverlay.show = false;
+				$scope.svgIconPickerOverlay = null;
+			}
+		};
+	};
+	
 });
-
