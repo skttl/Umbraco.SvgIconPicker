@@ -1,50 +1,39 @@
-<div class="umb-panel" ng-controller="SvgIconPickerDialogController">
-	<div class="umb-panel-header">
-		<div class="umb-el-wrap umb-panel-buttons">
-	        <div class="form-search">
-                <i class="icon-search"></i>
-                <input type="text"
-                       style="width: 100%"
-                       ng-model="searchTerm"
-                       class="umb-search-field search-query input-block-level"
-                       placeholder="Filter..."
-                       no-dirty-check>
-            </div>
-    	</div>
+<div ng-controller="SvgIconPickerDialogController">
+
+    <div class="umb-control-group">
+        <div class="form-search">
+            <i class="icon-search"></i>
+            <input type="text"
+                   style="width: 100%"
+                   ng-model="searchTerm"
+                   class="umb-search-field search-query input-block-level"
+                   localize="placeholder"
+                   placeholder="@placeholders_filter"
+                   umb-auto-focus
+                   no-dirty-check>
+        </div>
+    </div>
+
+    <umb-load-indicator ng-if="loading"></umb-load-indicator>
+
+    <div class="umb-control-group" ng-show="!loading && filtered.length > 0 ">
+	    <ul class="umb-iconpicker" ng-class="color" ng-show="icons">
+		    <li class="umb-iconpicker-item" ng-repeat="icon in filtered = (icons | filter: searchTerm) track by $id(icon)">
+				<a href="#" title="{{icon}}" ng-click="selectIcon(icon)" prevent-default class="{{ icon == model.selected ? 'svg-icon-picker-selected' : '' }}">
+				    <i>
+						<svg class="svg-icon-picker-icon" width="100" height="100" viewBox="0 0 100 100">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ getSvgLink(icon) }}"></use>
+						</svg>
+					</i>
+		        </a>
+		    </li>
+		</ul>
 	</div>
 
-	<div class="umb-panel-body with-footer">
+	<umb-empty-state
+		ng-if="filtered.length === 0"
+		position="center">
+		<localize key="defaultdialogs_noIconsFound">No icons were found.</localize>
+	</umb-empty-state>
 
-        <umb-load-indicator ng-if="loading"></umb-load-indicator>
-
-        <div class="umb-control-group" ng-show="!loading">
-	        <ul class="umb-iconpicker" ng-class="color" ng-show="icons">
-		        <li class="umb-iconpicker-item" ng-repeat="icon in filtered = (icons | filter: searchTerm) track by $id(icon)">
-				    <a href="#" title="{{icon}}" ng-click="submitClass(icon)" prevent-default class="{{ icon == dialogData.selected ? 'svg-icon-picker-selected' : '' }}">
-				    	<i>
-							<svg class="svg-icon-picker-icon" width="120" height="100" viewBox="0 0 100 100">
-								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ getSvgLink(icon) }}"></use>
-							</svg>
-						</i>
-		            </a>
-		        </li>
-		    </ul>
-		</div>
-
-		<umb-empty-state
-			ng-if="filtered.length === 0"
-			position="center">
-			<localize key="defaultdialogs_noIconsFound">No icons were found.</localize>
-		</umb-empty-state>
-	</div>
-
-	<div class="umb-panel-footer" >
-		<div class="umb-el-wrap umb-panel-buttons">
-	        <div class="btn-toolbar umb-btn-toolbar pull-right">
-	        	<a href ng-click="close()" class="btn btn-link">
-	        		<localize key="general_cancel">Cancel</localize>
-				</a>
-	        </div>
-		</div>
-	</div>
 </div>

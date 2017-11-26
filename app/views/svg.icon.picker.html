@@ -4,13 +4,13 @@
 		<li style="width: 120px; height: 100px; overflow: hidden;">
 
 			<i class="icon large">
-				<svg class="svg-icon-picker-icon" width="120" height="100" viewBox="0 0 100 100">
+				<svg class="svg-icon-picker-icon" width="100" height="100" viewBox="0 0 100 100">
 					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ getSvgLink(model.value) }}"></use>
 				</svg>
 			</i>
 
 			<div class="umb-sortable-thumbnails__actions">
-				<a class="umb-sortable-thumbnails__action" href="" ng-click="openIconPickerDialog()">
+				<a class="umb-sortable-thumbnails__action" href="" ng-click="openSvgIconPicker()">
 					<i class="icon icon-edit"></i>
 				</a>
 				<a class="umb-sortable-thumbnails__action -red" href="" ng-click="model.value = ''">
@@ -21,14 +21,15 @@
 		</li>
 	</ul>
 
-
-	<ul class="umb-sortable-thumbnails" ng-if="model.value === ''">
-		<li style="border: none">
-			<a href="#" class="add-link" ng-click="openIconPickerDialog()" prevent-default>
-				<i class="icon icon-add large"></i>
-			</a>
-		</li>
-	</ul>
+	<a href="#" class="add-link" ng-class="{'add-link-square': model.value === ''}" ng-if="model.value === ''" ng-click="openSvgIconPicker()" prevent-default>
+		<i class="icon icon-add large"></i>
+	</a>
 	
-</div>
+    <umb-overlay
+        ng-if="svgIconPickerOverlay.show"
+        model="svgIconPickerOverlay"
+        view="svgIconPickerOverlay.view"
+        position="right">
+    </umb-overlay>
 
+</div>
